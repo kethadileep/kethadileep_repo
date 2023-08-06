@@ -9,8 +9,9 @@ output = 5
 print(f'Expected_output:: {output}')
 
 max_profit = 0
-for day in range(len(input_prices) - 1):
-    for next_day in range(day+1, len(input_prices)):
+leng = len(input_prices) # measure time for len func
+for day in range(leng - 1):
+    for next_day in range(day+1, leng):
         day_profit = input_prices[next_day] - input_prices[day]
         if day_profit > max_profit:
             max_profit = day_profit
