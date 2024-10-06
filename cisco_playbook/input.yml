@@ -1,0 +1,14 @@
+inputs:
+  device_fields: "id,family,type,macaddress,managementipaddress"
+  device_filterfield: "hostname,macaddress"
+  device_filter_string: "sw2,sw1|52:54:00:0e:1c:6a"
+
+device_data:
+  - mac_address: "52:54:00:0f:25:4c"
+    management_ip_address: "10.10.20.178"
+    accesspoint_radio_type: 1
+    ap_name: "HallAP"
+  - mac_address: "52:54:00:0e:1c:6a"
+    management_ip_address: "10.10.20.176"
+    accesspoint_radio_type: 2
+    ap_name: "FloorAP"

@@ -1,0 +1,27 @@
+---
+- name: Cisco DNAC Device Data Processing
+  hosts: localhost
+  gather_facts: no
+
+
+  tasks:
+    - name: Load credentials
+      include_vars:
+        file: credentials.yml
+        name: creds
+
+    - name: Load input data
+      include_vars:
+        file: input.yml
+        name: inputs
+
+    - name: Debug creds
+      debug:
+        var: creds
+
+    - name: Fetch and process device data
+      cisco.dnac.devicedata:
+        host: "{{ creds.host }}"
+        username: "{{ creds.username }}"
+        password: "{{ creds.password }}"
+        input_data: "{{ inputs }}"

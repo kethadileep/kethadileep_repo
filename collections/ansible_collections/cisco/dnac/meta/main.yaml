@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Your Name
+  description: Ansible Collection for Cisco DNAC Device Data Processing
+  company: Your Company
+  license: license (e.g., MIT)
+  min_ansible_version: 2.9
+  dependencies:
+    - ansible.builtin
+
+dependencies: []
+
+# Optional: Ansible version compatibility
+# If your collection has specific compatibility requirements, you can add it like this:
+# galaxy_info:
+#   min_ansible_version: "2.9"
