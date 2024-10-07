@@ -1,0 +1,86 @@
+Assessment for the CISCO project
+I hope you have installed Ansible and python and PIP in your system.
+
+1) Create the Ansible playbook with name main.yaml
+from the main.yaml file you have to use credential.yml and input.yml
+credential.yml contains credentials details.
+input.yml contains input data which need to pass to python module to process data.
+Create custom collection in the Ansible playbook like cisco.dnac
+from the playbook you must call the python module (devicedata.py) to process the input data
+
+2) Python module should contain below list of features in the file.
+a) It should be proper class, constructor, and functions
+b) Need to handle proper error handling like try catch and should not stop in middle
+c) use python Ansible package to validate input passed from playbook
+d) Create the function to login 3rd party URL (shared below) to get token
+e) Create function to access GET url (given below) and pass the token and input data
+f) create custom function to process the response from the get URL to show output limited column and filter by data given in input file
+g) try to cover the unit test for the functions
+h) track the logs and error logs files when each process happens in the python class
+
+
+credentials:
+host: sandboxdnac.cisco.com
+port: 443
+username: devnetuser
+password: Cisco123!
+
+
+
+inputs:
+
+device_fields: "id,family,type,macaddress,managementipaddress"
+device_filterfield: "hostname,macaddress"
+device_filter_string: "sw2,sw1|52:54:00:0e:1c:6a"
+
+device data:
+    -mac_address: "52:54:00:0f:25:4c"
+    management_ip_address: "10.10.20.178"
+    accesspoint_radio_type: 1
+    ap_name: "HallAP"
+    - mac_address: "52:54:00:0e:1c:6a"
+    management_ip_address: "10.10.20.176"
+    accesspoint_radio_type: 2
+    ap_name: "FloorAP"
+
+input validation:
+mac_address : should be string and mac address format
+management_ip_address : should be string and IP address format 
+ap_name : should be string and atleast minimum 1 letter
+accesspoint_radio_type : should be number
+
+authentication URL : POST : https://sandboxdnac.cisco.com/api/system/v1/auth/token
+device data URL : GET : https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device
+
+More Reference use : https://developer.cisco.com/docs/dna-center/authentication-api/
+
+
+
+Code Review Check list:
+
+1	Avoid dead code that contains unused local variables, unused imports, or unused lines of code.
+2	Description about the Function, Calculation,request and response are proper
+3	Avoid hard-coded values that are embedded in the source code and use enums or constants instead.
+4	Loggers are added. Logger.error/Loggger.warn/Loggger.info/Logger.debug are added appropriately and used in catch block.
+5	Code duplication be checked.
+6	Implementation of validate Function to validate the JSON data is well-formed ,fallowed certain Format and type that used in implementation 
+7	Constants are moved to configuration files if they are bound to change
+8	Unit test cases there for all scenarios and the test data are close to the real time data
+9	Injections via MockSSM ,MockDynamoDB  ,usefixtures and MockAPI's handled in test implementations
+10	Methods are implemented in the right classes 
+11	Exceptions are appropriately cascaded in Methods
+12	Custom exceptions are created when required
+13	Following the requirements file, updated the latest list of modules and their versions required for a specific module
+14	Custom exceptions are created when required
+15	The code blocks should be concise
+17	Remove comments if they give no information!
+18	Security vulnerabilities .
+	
+
+
+kethadileep@DESKTOP-O2GPTD1:~/project_root/cisco_project/collections/ansible_collections/cisco/dnac/plugins/modules$ python -m unittest tests/test_devicedata.py
+
+kethadileep@DESKTOP-O2GPTD1:~/project_root/cisco_project$ ansible-playbook -i inventory.yml cisco_playbook/main.yaml
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+
