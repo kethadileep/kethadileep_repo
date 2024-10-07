@@ -1,0 +1,2 @@
+2024-10-07 07:01:43,882 - INFO - Successfully obtained authentication token.
+2024-10-07 07:01:45,579 - ERROR - Error fetching device data: 401 Client Error: Unauthorized for url: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device

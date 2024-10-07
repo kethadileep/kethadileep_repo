@@ -1,0 +1,25 @@
+
+PLAY [Cisco DNAC Device Data Processing] ***************************************
+
+TASK [Load credentials] ********************************************************
+ok: [localhost]
+
+TASK [Load input data] *********************************************************
+ok: [localhost]
+
+TASK [Debug creds] *************************************************************
+ok: [localhost] => {
+    "creds": {
+        "host": "sandboxdnac.cisco.com",
+        "password": "Cisco123!",
+        "port": 443,
+        "username": "devnetuser"
+    }
+}
+
+TASK [Fetch and process device data] *******************************************
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "401 Client Error: Unauthorized for url: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
