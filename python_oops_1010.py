@@ -23,3 +23,7 @@ def devide(a,b):
     print (a/b)
 
 devide(10,2)
+
+
+#====================
+''.join([char* 2 for char in 'dileep'])
